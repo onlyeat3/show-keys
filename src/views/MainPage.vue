@@ -39,6 +39,7 @@ body {
 }
 
 #wrapper {
+  -webkit-app-region: drag;
   background: radial-gradient(
     ellipse at top left,
     rgba(255, 255, 255, 1) 40%,
