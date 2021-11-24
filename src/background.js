@@ -67,7 +67,7 @@ async function createWindow () {
     fullscreenable: false,
     title: 'show-keys',
     skipTaskbar: true,
-    transparent: false,
+    transparent: true,
     hasShadow: true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
@@ -145,7 +145,6 @@ async function createWindow () {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     // if (!process.env.IS_TEST) win.webContents.openDevTools()
-    win.webContents.openDevTools();
   } else {
     createProtocol('app')
     // Load the index.html when not in development
