@@ -18,8 +18,10 @@ export default {
     }
   },
   created () {
-    ipcRenderer.on('current-keys-change', (event, keys) => {
+    console.log('created');
+    ipcRenderer.addListener('current-keys-change', (event, keys) => {
       this.keysFromMainProcess = keys;
+      console.log(this.keysFromMainProcess);
     });
   }
 }

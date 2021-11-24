@@ -1,10 +1,12 @@
 'use strict'
-import electron, { app, BrowserWindow, protocol, screen } from 'electron';
+import electron, { ipcMain, app, BrowserWindow, protocol, screen } from 'electron';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import ioHook from 'iohook';
+import path from 'path';
 import keycode from 'keycode';
 import utils from './utils'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
+import log from 'electron-log';
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -24,25 +26,16 @@ function preventDragbarContext (win) {
     return true;
   })
 }
+ioHook.setDebug(false)
 ioHook.useRawcode(true);
 ioHook.start(false);
-
-// const globalKeyboardListener = new GlobalKeyboardListener({
-//   windows: {
-//     onError: (errorCode) => console.error("ERROR: " + errorCode),
-//     onInfo: (info) => console.info("INFO: " + info)
-//   },
-//   mac: {
-//     onError: (errorCode) => console.error("ERROR: " + errorCode),
-//   }
-// });
-
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
+let win = null;
 async function createWindow () {
   // Create the browser window.
   let size = screen.getPrimaryDisplay().workAreaSize;
@@ -53,7 +46,7 @@ async function createWindow () {
   /**
    * Initial window options
    */
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     height: height,
     useContentSize: true,
     width: width,
@@ -98,9 +91,16 @@ async function createWindow () {
       }
     }
   ];
-
+  let iconPath = '';
   //系统托盘图标目录
-  appTray = new Tray('./src/assets/logo.ico');//app.ico是app目录下的ico文件
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // 测试环境
+    iconPath = 'src/assets/logo.ico'
+  } else {
+    // 正式环境
+    iconPath = path.join(path.dirname(app.getPath('exe')), 'resources/logo.ico');
+  }
+  appTray = new Tray(iconPath);//app.ico是app目录下的ico文件
   //图标的上下文菜单
   const contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
 
@@ -141,14 +141,11 @@ async function createWindow () {
       win.webContents.send('current-keys-change', currentKeys);
     }
   });
-
-
-
-
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     // if (!process.env.IS_TEST) win.webContents.openDevTools()
+    win.webContents.openDevTools();
   } else {
     createProtocol('app')
     // Load the index.html when not in development

@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-    </div> -->
-    <router-view />
+    <!-- <router-view /> -->
+    <MainPage></MainPage>
   </div>
 </template>
 
+<script>
+import MainPage from './views/MainPage.vue'
+export default {
+  data () {
+    return {}
+  },
+  created () {
+  },
+  components: { MainPage }
+}
+</script>
 <style lang="scss">
 #app {
   user-select: none;
