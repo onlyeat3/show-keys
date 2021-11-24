@@ -53,5 +53,6 @@ body {
   vertical-align: middle;
   width: 100vw;
   line-height: 100vh;
+  border-radius: 4px;
 }
 </style>
