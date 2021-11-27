@@ -1,24 +1,4 @@
 # show-keys
+Desktop App.Show pressed keys. 一款桌面软件，用于显示当前按键信息。在录制软件教程的时候，会在桌面上显示用的快捷键，节省了视频剪辑的时间。
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[演示图片](!./../screenshot/2021-11-27-18-22-39.gif)
