@@ -1959,7 +1959,7 @@ array-unique@^0.3.2:
   resolved "https://registry.nlark.com/array-unique/download/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
   integrity sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
 
-asar@^3.0.3:
+asar@^3.0.3, asar@^3.1.0:
   version "3.1.0"
   resolved "https://registry.nlark.com/asar/download/asar-3.1.0.tgz#70b0509449fe3daccc63beb4d3c7d2e24d3c6473"
   integrity sha1-cLBQlEn+PazMY76008fS4k08ZHM=
@@ -2489,6 +2489,11 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/builtin-status-codes/download/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
+
+bytenode@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.npmmirror.com/bytenode/download/bytenode-1.3.4.tgz#6ab5830d70341de6ae9ae08ccafbd092faa0bade"
+  integrity sha1-arWDDXA0HeaumuCMyvvQkvqgut4=
 
 bytes@3.0.0:
   version "3.0.0"

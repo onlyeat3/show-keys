@@ -1,10 +1,12 @@
+const { dependencies } = require('./package.json');
+
 module.exports = {
   configureWebpack: {
     // Webpack configuration applied to web builds and the electron renderer process
   },
   pluginOptions: {
     electronBuilder: {
-      externals: ['iohook'],
+      externals: [...Object.keys(dependencies)],
       nodeIntegration: true,
       builderOptions: {
         "appId": "io.github.onlyeat3.show-keys",
